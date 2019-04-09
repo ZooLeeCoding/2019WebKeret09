@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,9 +9,9 @@ export class FirebaseStoreService {
 
   private baseUrl = "/gyumolcsok"
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFirestore) { }
 
   getGyumolcsok(): Observable<any> {
-    return this.db.list(this.baseUrl).valueChanges();
+    return this.db.collection("gyumolcsok").valueChanges();
   }
 }

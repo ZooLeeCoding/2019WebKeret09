@@ -20,6 +20,11 @@ export class MyFirsztComponent implements OnInit, OnChanges {
   valtozoLista: any[];
 
   constructor(private firebaseStore: FirebaseStoreService) {
+    this.firebaseStore.getGyumolcsok().subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log("ERROR", error);
+    })
     this.valtozoLista = [{neve: "alma", ara: 100}, 
     {neve: "narancs", ara: 50}, 
     {neve: "banan", ara: 80}];
