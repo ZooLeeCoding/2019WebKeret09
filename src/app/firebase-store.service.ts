@@ -7,11 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class FirebaseStoreService {
 
-  private baseUrl = "/gyumolcsok"
+  private baseUrl = "gyumolcsok"
 
   constructor(private db: AngularFirestore) { }
 
   getGyumolcsok(): Observable<any> {
-    return this.db.collection("gyumolcsok").valueChanges();
+    return this.db.collection(this.baseUrl).valueChanges();
+  }
+
+  addGyumolcs(gyumolcs: any) {
+    this.db.collection(this.baseUrl).add(gyumolcs);
   }
 }

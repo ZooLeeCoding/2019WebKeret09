@@ -22,12 +22,11 @@ export class MyFirsztComponent implements OnInit, OnChanges {
   constructor(private firebaseStore: FirebaseStoreService) {
     this.firebaseStore.getGyumolcsok().subscribe(data => {
       console.log(data);
+      this.valtozoLista = data;
     }, error => {
       console.log("ERROR", error);
     })
-    this.valtozoLista = [{neve: "alma", ara: 100}, 
-    {neve: "narancs", ara: 50}, 
-    {neve: "banan", ara: 80}];
+    
     this.valtozo1 = true;
     this.valtozo2 = "RAKTAROZZ"
     this.valtozo3 = 0;
@@ -41,10 +40,10 @@ export class MyFirsztComponent implements OnInit, OnChanges {
 
    raktarFeltoltes() {
      if(this.valtozo2 !== "RAKTAROZZ") {
-      this.valtozoLista.push({neve: this.valtozo2, 
-        ara: this.valtozo3});
-      this.myEmitter.emit({neve: this.valtozo2, 
-        ara: this.valtozo3});
+      var newFruit = {neve: this.valtozo2, ara: this.valtozo3}
+      this.valtozoLista.push(newFruit);
+      this.firebaseStore.addGyumolcs(newFruit);
+      this.myEmitter.emit(newFruit);
      }
    }
 
