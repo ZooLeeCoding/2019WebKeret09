@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, 
   SimpleChanges, EventEmitter,
   Input, Output } from '@angular/core';
+import { FirebaseStoreService } from '../firebase-store.service';
 
 @Component({
   selector: 'app-my-firszt',
@@ -18,7 +19,7 @@ export class MyFirsztComponent implements OnInit, OnChanges {
   valtozo3: Number;
   valtozoLista: any[];
 
-  constructor() {
+  constructor(private firebaseStore: FirebaseStoreService) {
     this.valtozoLista = [{neve: "alma", ara: 100}, 
     {neve: "narancs", ara: 50}, 
     {neve: "banan", ara: 80}];
